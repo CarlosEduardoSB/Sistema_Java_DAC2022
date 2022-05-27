@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"    
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head> <title>Lista de Jogos</title> </h:head>
+	<body>
+		
+		<center>
+	
+		<h:panelGroup>
+		
+		<center><h2>Jogos Cadastrados</h2></center>
+	
+		</h:panelGroup>
+		<h:form id="form-1">
+		<p:messages id="messages" showDetail="true" closable="true" autoUpdate="true"/>
+		<p:panel header="Jogos">
+
+		<p:dataTable id="jogos" value="#{jogoBean.listaJogos}" var="jogo" rowKey="#{jogo.id}">
+			<p:column headerText="Id do jogo">
+			<p:outputLabel value="#{jogo.id}" />
+			</p:column>
+			
+			<p:column headerText="Valores Aleatórios">
+			<p:outputLabel value="#{jogo.v1}," />
+			<p:outputLabel value="#{jogo.v2}," />
+			<p:outputLabel value="#{jogo.v3}," />
+			<p:outputLabel value="#{jogo.v4}," />
+			<p:outputLabel value="#{jogo.v5}," />
+			<p:outputLabel value="#{jogo.v6}," />
+			<p:outputLabel value="#{jogo.v7}," />
+			<p:outputLabel value="#{jogo.v8}," />
+			<p:outputLabel value="#{jogo.v9}," />
+			<p:outputLabel value="#{jogo.v10}" />
+			</p:column>
+			
+			<p:column headerText="Descrição da jogo">
+			<p:outputLabel value="#{jogo.descricao}" />
+			</p:column>
+			
+			<p:column headerText="Data e Hora de Cadastro">
+			<p:outputLabel value="#{jogo.dataCriacao}" />
+			</p:column>
+			
+			<p:column headerText="Pares">
+			<p:commandButton value="Mostrar Pares" action="#{jogoBean.mostrarPares12(jogo)}" update="jogo" ajax="false"></p:commandButton>
+			</p:column>
+			
+
+			<p:column headerText="Editar">
+			<p:commandLink value="Editar" uptade="jogos" action="edicao.xhtml" ajax="false">
+		    	<f:setPropertyActionListener value="#{jogo}" target="#{jogoBean.jogo}" />
+			</p:commandLink>
+			</p:column>
+
+			<p:column headerText="Excluir">
+			<p:commandButton type="button" icon="pi pi-trash" 
+				styleClass="rounded-button ui-button-danger ui-button-flat" /> <!-- CommandButtom servindo apenas como ícone de lixeira! -->
+			<p:commandLink value="Deletar" action="#{jogoBean.excluir(jogo)}" ajax="false">
+				<f:setPropertyActionListener value="#{jogo}" target="#{jogoBean.jogo}" />
+			</p:commandLink>
+			</p:column>
+
+		</p:dataTable>
+
+		</p:panel>
+	
+		<p></p>
+		
+		<p:commandLink value="Voltar para Cadastro" action="index.xhtml"/>
+		
+		</h:form>
+		
+	    </center>
+</body>
+
+</html>
